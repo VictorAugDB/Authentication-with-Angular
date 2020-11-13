@@ -43,7 +43,8 @@ router.post('/register', (req, res) => {
         if (error) {
             console.log(error)
         } else {
-            let payload = { subject: registeredUser._id }
+            let payload = { subject: registeredUser._id,
+                            email: registeredUser.email}
             let token = jwt.sign(payload, 'secretKey')
             res.status(200).send({ token })
         }

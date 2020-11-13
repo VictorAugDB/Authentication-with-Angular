@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,13 @@ export class AuthService {
 
   getToken(){
     return localStorage.getItem('token')
+  }
+
+  decodePayLoadJWT(): any{
+    try {
+      return jwt_decode(this.getToken())
+    } catch(error){
+      return null;
+    }
   }
 }
